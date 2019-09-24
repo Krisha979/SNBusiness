@@ -24,7 +24,7 @@ class PreviewImageState extends State<PreviewImage> {
   Imagetype _file;
   
  @override
-  Future initState(){
+  void initState(){
    _dropdownMenuItems = buildDropdownMenuItems(_fileType);
     _file= _dropdownMenuItems[0].value;
     super.initState();

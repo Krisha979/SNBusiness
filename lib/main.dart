@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 //import 'package:snbiz/src_code/home.dart';
 import 'package:snbiz/src_code/login.dart';
-import 'package:snbiz/src_code/splash_screen.dart';
 
 
  void main() {
@@ -20,13 +19,7 @@ class MyApp extends StatelessWidget{
       ),
     debugShowCheckedModeBanner: false,
    
-    home: SplashScreen(),
-    routes: <String, WidgetBuilder>{
-      "/login": (BuildContext context) =>  new LoginPage(),
-     // "/home": (BuildContext context) => new Home(),
-
-
-    }
+    home: LoginPage(),
     );
   }
 }

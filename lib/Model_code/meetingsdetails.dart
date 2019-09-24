@@ -61,4 +61,22 @@ class MeetingInfo {
     data['statusName'] = this.statusName;
     return data;
   }
+  
 }
+/*
+class MeetingDet {
+  final List<MeetingInfo> results;
+  final String error;
+
+  MeetingDet(this.results, this.error);
+
+  MeetingDet.fromJson(Map<String, dynamic> json)
+      : results =
+            (json["results"] as List).map((i) => new MeetingInfo.fromJson(i)).toList(),
+        error = "";
+
+  MeetingDet.withError(String errorValue)
+      : results = List(),
+        error = errorValue;
+}
+*/
