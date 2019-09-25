@@ -32,12 +32,23 @@ class LoginPage extends StatefulWidget{
       Future<Null> getfromstorage() async {
       var email = await storage.read(key:"Email");
       var password = await storage.read(key: "Password");
-      if(email != null){
-      emailcontroller.text = email;
-      passwordcontroller.text = password;
+          if(email != null){
+              emailcontroller.text = email;
+            }
+          if(password != null){
+            passwordcontroller.text = password;
+          }
+          if(email!= null && password!=null){
+             bool connection = await _checkConnectivity();
+             if(connection == true){
+              setState(() {
+                           isLoading = true; 
+                        });
+            checkCredentials(email, password);
+             }
+          }
       }
-      }
-  Future<dynamic> checkCredentials(String email, String password) async{
+  Future<void> checkCredentials(String email, String password) async{                 
       http.Response response = await http.get(
       Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/UserAuthentication"),
       headers: {
@@ -48,21 +59,49 @@ class LoginPage extends StatefulWidget{
       }
       );
       if(response.statusCode == 200){
-      print(response.body);
-      Map data = await json.decode(response.body);
-      var user = UserData.fromJson(data);
-      return user;
+          print(response.body);
+          Map data = await json.decode(response.body);
+          var user = UserData.fromJson(data);
+          if(user != null){
+                if(user.isValidated){
+                      StaticValue.orgId= user.organizationId;
+                      StaticValue.orgName = user.organizationName;
+                      StaticValue.logo = user.logo;
+                      StaticValue.userRowstamp=user.userRowstamp;
+                      await storage.write(key: "Email", value: email);
+                      await storage.write(key: "Password", value: password);
+                      setState(() {
+                                      isLoading = false; 
+                                  });
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage()));
+                  }
+                  else{
+                    setState(() {
+                                      isLoading = false; 
+                                  });
+                    await _alert(context, "Opps","You are not validated. Please Validate yourself.");
+               }
+          }
       }
       else if(response.statusCode == 401){
-      return false;
+          setState(() {
+                          isLoading = false; 
+                      });
+          await _alert(context, "Invalid Credentials","Email not found.");
       }
       else if(response.statusCode == 404){
-      return true;
-      }
+            setState(() {
+                            isLoading = false; 
+                        });
+            await _alert(context, "Invalid Credentials","Password did not match.");
+         }
       else{
-      return null;
+        setState(() {
+                      isLoading = false; 
+                  });
+        await _alert(context, "Error","Server Error. Connection timed Out.");
       }
-      }
+    }
 
       
       bool _obscureText = true;
@@ -211,60 +250,28 @@ class LoginPage extends StatefulWidget{
                                   ),
                                   
                                   onPressed: () async {
-                                     if (_formKey.currentState.validate())
-                                   {
-                                   
-                                 _checkConnectivity();
-                                    setState(() {
-                                    isLoading = true; 
-                                    });
+                                      if (_formKey.currentState.validate())
+                                       {
                                     
-                                    var useremail = emailcontroller.text;
-                                    var password = passwordcontroller.text;
-                                      try{
-                                          await storage.write(key: "Email", value: useremail);
-                                          await storage.write(key: "Password", value: password);
-                                    }catch(e)
-                                    {
-                                        print(e.toString());
-                                    }
-                                    var check = await checkCredentials(useremail,password);
-                                    if(check != null){
-                                      setState(() {
-                                      isLoading = false; 
-                                    });
-                                
-                                   
-                                      if(check == true){
-                                        await _alert(context, "Invalid Credentials","Email not found.");
-                                      }
-                                      else if(check == false){
-                                        await _alert(context, "Invalid Credentials","Password did not match.");
-                                      }
-                                      else{
-                                        if(check.isValidated){
-                                          StaticValue.orgId= check.organizationId;
-                                          StaticValue.orgName = check.organizationName;
-                                          StaticValue.logo = check.logo;
-                                          StaticValue.userRowstamp=check.userRowstamp;
-                                          await storage.write(key: "Email", value: useremail);
-                                          await storage.write(key: "Password", value: password);
-                                          await _alert(context, "Congrats","You are validated.");
-                                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage()));
-                                      }
-                                      else{
-                                        await _alert(context, "Opps","You are not validated. Please Validate yourself.");
-                                      }
-                                    }
-                                    }
-                                    else{
-                                  
-                                      await _alert(context, "Error","Server Error. Please check your internet connection.");
-                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage()));
-                                     // Navigator.of(context).pushNamed('second');
-                                   }
-                                  }
-                                  
+                                          bool connection = await _checkConnectivity();
+                                          if(connection == true)
+                                          {
+                                              setState(() {
+                                              isLoading = true; 
+                                              });
+                                              
+                                              var useremail = emailcontroller.text;
+                                              var password = passwordcontroller.text;
+                                                try{
+                                                    await storage.write(key: "Email", value: useremail);
+                                                    await storage.write(key: "Password", value: password);
+                                              }catch(e)
+                                              {
+                                                  print(e.toString());
+                                              }
+                                              await checkCredentials(useremail,password);
+                                          }  
+                                        }
                                    },
                                   child: Text("Sign in", 
                                   style: TextStyle(color: Colors.white)),
@@ -285,28 +292,40 @@ class LoginPage extends StatefulWidget{
                                ); 
                                     
                            }
-                        _checkConnectivity() async{
+                       
+                       Future<bool> _checkConnectivity() async{
                         var result = await Connectivity().checkConnectivity();
                         if (result == ConnectivityResult.none){
-                          _showDialog("Error!"," check Connection");
+                         _scaffoldKey.currentState.showSnackBar(
+                          new SnackBar(
+                            content: new Text('No Internet Access,Turn on Wifi or connect over mobile data'),
+                            duration: Duration(seconds: 3),
+                             backgroundColor: Color.fromARGB(80,255, 0, 0)
+                          )
+                         );
+                         return false;
                         }else if (result == ConnectivityResult.mobile){
                         // _showDialog("Internet access","You are connected over mobile data");
                         _scaffoldKey.currentState.showSnackBar(
                           new SnackBar(
-                            content: new Text('Internet Access, connected over mobile data'),
-                            duration: Duration(seconds: 2)
+                            content: new Text('Internet Access, Connected over mobile data'),
+                            duration: Duration(seconds: 3),
+                             backgroundColor: Color.fromARGB(80,0, 255, 0)
                           )
                         );
-                          
+                          return true;
                         }else if (result == ConnectivityResult.wifi){
                         // _showDialog("Internet access", "You are connected over wifi");
                         _scaffoldKey.currentState.showSnackBar(
                           new SnackBar(
-                            content: new Text('Internet Access, connected over wifi'),
-                            duration: Duration(seconds: 1),
+                            content: new Text('Internet Access, Connected over Wifi'),
+                            duration: Duration(seconds: 3),
+                             backgroundColor: Color.fromARGB(80,0, 255, 0)
                           )
-                        );
-                        }
+                          );
+                          return true;
+                          }
+                          return false;
                         }
                         _showDialog(title, text) {
                           showDialog(
@@ -334,23 +353,21 @@ class LoginPage extends StatefulWidget{
                         context: context,
                         builder: (BuildContext context) {
                         return AlertDialog(
-                        title: Text(header),
-                        content: Text(body),
+                            title: Text(header),
+                            content: Text(body),
                         
-                        actions: <Widget>[
+                                actions: <Widget>[
                           
-                        FlatButton(
-                          child: Text('Ok'),
-                        
-                        onPressed: () {
-                          
-                          
-                          Navigator.of(context).pop();
-                        },
-                        ),
-                        ],
-                        );
-                        },
-                        );
+                                  FlatButton(
+                                          child: Text('Ok', style: TextStyle(color: Colors.blue, fontSize: 12.0)),
+                                          
+                                          onPressed: () {
+                                                     Navigator.of(context).pop();
+                                    },
+                                  ),
+                               ],
+                             );
+                            },
+                          );
                         }
                         
