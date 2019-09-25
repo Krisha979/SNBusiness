@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+class Profile extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return ProfileState();
+  }
 
-class Profile extends StatelessWidget{
+}
+
+class ProfileState extends State<Profile>{
   @override
   Widget build(BuildContext context) {
     

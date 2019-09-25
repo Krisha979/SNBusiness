@@ -75,8 +75,8 @@ class CameraAppState extends State<CameraApp>{
                             Container(height: 100.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10.0)),
-                                color: Color(0xFFA551F8),
+                                topLeft: Radius.circular(5.0)),
+                                color: const Color(0xFF1500ff),
                             ),),
                             Positioned(top: 50.0, left: 94.0,
                             child: Container(
@@ -86,7 +86,7 @@ class CameraAppState extends State<CameraApp>{
                                 border: Border.all(
                                   color: Colors.white,
                                   style: BorderStyle.solid,
-                                  width: 20.0
+                                  width: 10.0
                                 ),
                                 image: DecorationImage(
                                   image: new AssetImage("assets/logo.jpg"),
@@ -97,17 +97,17 @@ class CameraAppState extends State<CameraApp>{
                             )
                           ],
                         ),
-                        SizedBox(height: 20.0),
+                        SizedBox(height: 10.0),
                         Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Text("Make your choice!", 
                           style: TextStyle(
                             fontFamily: 'Quicksand',
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w300
+                            fontSize: 23.0,
+                            fontWeight: FontWeight.bold
                           ),),
                         ),
-                        SizedBox(height: 30.0),
+                        SizedBox(height: 20.0),
                         Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Row(

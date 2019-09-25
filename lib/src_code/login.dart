@@ -6,7 +6,6 @@ import 'package:snbiz/src_code/page.dart';
 import'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:snbiz/src_code/static.dart';
-import 'package:snbiz/src_code/static.dart' as prefix0;
 
 class LoginPage extends StatefulWidget{
         @override

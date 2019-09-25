@@ -1,10 +1,9 @@
-import 'package:dio/dio.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:snbiz/Model_code/File_type.dart';
-import 'package:http/http.dart' as http;
-//import 'package:intl/intl.dart';
+
 
 class PreviewFile extends StatefulWidget {
   // final String imageFile;
@@ -27,7 +26,7 @@ bool _validate = false;
   List <DropdownMenuItem<Imagetype>> _dropdownMenuItems;
   Imagetype _file;
  @override
-  Future initState(){
+  void initState(){
    _dropdownMenuItems = buildDropdownMenuItems(_fileType);
     _file= _dropdownMenuItems[0].value;
     super.initState();
@@ -53,7 +52,7 @@ bool _validate = false;
 String _date ="Not set";
 String issuedate="";
 String expirydate="";
-Callender(int a){
+callender(int a){
   DatePicker.showDatePicker(context,
                       theme: DatePickerTheme(
                         containerHeight: 210.0,
@@ -260,7 +259,7 @@ Callender(int a){
                             color: Colors.green
                             ),
                             onTap: (){
-                              Callender(0);
+                              callender(0);
                             }
                             ),
                             Padding(
@@ -306,7 +305,7 @@ Callender(int a){
                             color: Colors.green,
                             ),
                             onTap: (){
-                              Callender(1);
+                              callender(1);
                             }
                             ),
                             Padding(
