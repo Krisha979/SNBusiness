@@ -7,7 +7,7 @@ class Profile extends StatefulWidget{
 
 }
 
-class ProfileState extends State<Profile>{
+class ProfileState extends State<Profile>{  
   @override
   Widget build(BuildContext context) {
     
@@ -105,8 +105,8 @@ class ProfileState extends State<Profile>{
                             elevation: 5.0,
                             shadowColor: Colors.black,
                             child: TextFormField(
+                              
                             decoration: InputDecoration(
-                           
                             fillColor: Colors.white,
                             filled: true,
                             contentPadding: EdgeInsets.fromLTRB(20.0,12.0,20.0,10.0),
