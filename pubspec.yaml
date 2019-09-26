@@ -28,6 +28,8 @@ dependencies:
   file_picker: 
   flutter_datetime_picker: 1.2.5
   dio: 
+  carousel_pro: ^1.0.0
+
 
   
   # The following adds the Cupertino Icons font to your application.
@@ -69,6 +71,16 @@ flutter:
    - assets/facebook.png
    - assets/logo.jpg
    - assets/docicon.png
+   - assets/image1.jpg
+   - assets/image2.jpg
+   - assets/image3.jpg
+   - assets/image4.jpg
+   - assets/invoice.png
+   - assets/icon1.png
+   - assets/Document.png
+   - assets/icon3.png
+   - assets/icon5.png
+   - assets/icon6.png
    
 
   # An image asset can refer to one or more resolution-specific "variants", see
