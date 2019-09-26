@@ -51,7 +51,7 @@ class PreviewImageState extends State<PreviewImage> {
 String _date ="Not set";
 String issuedate="";
 String expirydate="";
-Callender(int a){
+callender(int a){
   DatePicker.showDatePicker(context,
                       theme: DatePickerTheme(
                         containerHeight: 210.0,
@@ -210,7 +210,7 @@ Callender(int a){
                             color: Colors.blue,
                             ),
                             onTap: (){
-                              Callender(0);
+                              callender(0);
                             }
                             ),
                             Padding(
@@ -256,7 +256,7 @@ Callender(int a){
                             color: Colors.blue,
                             ),
                             onTap: (){
-                              Callender(1);
+                              callender(1);
                             }
                             ),
                             Padding(
