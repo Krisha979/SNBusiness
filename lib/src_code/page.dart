@@ -4,8 +4,8 @@ import 'package:snbiz/src_code/static.dart';
 import 'nav.dart';
 
 import 'meeting.dart' as second;
-import 'open_camera.dart' as third;
-import 'profile.dart' as fourth;
+import 'allnotification.dart' as third;
+import 'setting.dart' as fourth;
 import 'home.dart' as first;
 
 
@@ -40,19 +40,19 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: new Center(child: Text(StaticValue.orgName), 
+        //centerTitle: true,
+        title: Text(StaticValue.orgName, style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal)), 
       
-        ),
+      
         backgroundColor: const Color(0xFF9C38FF),
 
          actions: <Widget>[
             // action button
-            IconButton(
+            /*IconButton(
               padding: const EdgeInsets.only(right: 8.0),
               icon: Icon(Icons.notifications, size: 30.0),
               onPressed: () {},
-            ),
+            ),*/
 
             Padding(
               padding: const EdgeInsets.fromLTRB(0,10,15,10),
@@ -82,8 +82,8 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
                                     children: <Widget>[
                                       new first.Home(),
                                       new second.Meeting(),
-                                      new third.CameraApp(),
-                                      new fourth.Profile(),
+                                      new third.AllNotification(),
+                                      new fourth.Setting(),
                                       
                                     ],
                                   ),
@@ -102,8 +102,8 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
 
                                             new Tab(icon: new Icon(Icons.home, size: 16,), text:"Home",),
                                             new Tab(icon: new Icon(Icons.people,size: 16), text: "Meeting",),
-                                            new Tab(icon: new Icon(Icons.camera_alt, size: 16), text: "Upload",),
-                                            new Tab(icon: new Icon(Icons.person, size: 16,), text:"Profile",),
+                                            new Tab(icon: new Icon(Icons.notifications, size: 16), text: "Notification",),
+                                            new Tab(icon: new Icon(Icons.settings, size: 16,), text:"Setting",),
               
                                           ],
                                         ),

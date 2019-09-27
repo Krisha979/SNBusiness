@@ -10,6 +10,8 @@ class Profile extends StatefulWidget{
 class ProfileState extends State<Profile>{
   @override
   Widget build(BuildContext context) {
+     Size size = MediaQuery.of(context).size;
+
     
       return ListView(
         
@@ -20,8 +22,8 @@ class ProfileState extends State<Profile>{
           padding: const EdgeInsets.all(10.0),
            child: Container(
              margin: EdgeInsets.all(1.0),
-            height: 710.0,
-            width:  430.0,
+              height: size.height,
+              width: size.width,
             child: Material(
               color: Colors.white70,
               elevation: 5.0,
@@ -31,15 +33,11 @@ class ProfileState extends State<Profile>{
               
               child: Container(
                 margin: EdgeInsets.all(10.0),
-                height: 530.0,
-                  width:  340.0,
                   child: Material(
                     color: Colors.white,
                     elevation: 2.0,
                     borderRadius: BorderRadius.circular(5.0),
                     shadowColor: Color(0x802196f3),
-
-
                     child: Column(
                       
                       
@@ -229,9 +227,6 @@ class ProfileState extends State<Profile>{
                           ),
                           ),
                         ),  
-                        // Padding(
-                          //          padding: EdgeInsets.only(left:1.0),
-                            //      ),
                                  RaisedButton(
                                    color: Colors.blue,
                                    elevation: 5.0,
