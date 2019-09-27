@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:snbiz/src_code/profile.dart';
+import 'package:snbiz/src_code/static.dart';
 import 'nav.dart';
 
-import 'meeting.dart' as third;
-import 'open_camera.dart' as second;
+import 'meeting.dart' as second;
+import 'open_camera.dart' as third;
 import 'profile.dart' as fourth;
 import 'home.dart' as first;
 
@@ -35,56 +37,85 @@ class MainPageState extends State<MainPage> with SingleTickerProviderStateMixin 
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: new Center(child: new Text("Kathmandu Codes"), 
+        title: new Center(child: Text(StaticValue.orgName), 
       
         ),
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: const Color(0xFF9C38FF),
 
          actions: <Widget>[
             // action button
             IconButton(
-              padding: const EdgeInsets.only(right: 45.0),
-              icon: Icon(Icons.notifications, size: 45.0),
-              onPressed: (
-                              ) {
-                                
-                              },
-                            ),
+              padding: const EdgeInsets.only(right: 8.0),
+              icon: Icon(Icons.notifications, size: 30.0),
+              onPressed: () {},
+            ),
+
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0,10,15,10),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>Profile()));
+                },
+                child: CircleAvatar(
+               radius: 20,
+               
+                
+              
+               backgroundImage: NetworkImage(StaticValue.logo, ),
+                
+                  
+                ),
+              ),
+            )
                         ]
                       ),
-                      drawer: NavBar(),
+
+                      drawer: Nav(),
                     
                
                                   body: new TabBarView(
                                     controller: controller,
                                     children: <Widget>[
                                       new first.Home(),
-                                      new second.CameraApp(),
-                                      new third.Meeting(),
+                                      new second.Meeting(),
+                                      new third.CameraApp(),
                                       new fourth.Profile(),
                                       
                                     ],
                                   ),
               
                                   bottomNavigationBar: new Material(
-                                    color: Colors.deepPurpleAccent,
-                                    child: TabBar(
-                                      controller: controller,
-                                      tabs: <Tab>[
-                                        new Tab(icon: new Icon(Icons.home), text:"Home",),
-                                        new Tab(icon: new Icon(Icons.camera_alt), text: "Upload",),
-                                        new Tab(icon: new Icon(Icons.people), text: "Meeting",),
-                                        new Tab(icon: new Icon(Icons.person), text:"Profile",),
+                                    color: Color(0xFFBF9b38ff),
+
+                                    
+                                                         child:      Container(
+                                        height: size.height/12,
+                                        
+                                        child: TabBar(
+                                          
+                                          controller: controller,
+                                          tabs: <Tab>[
+
+                                            new Tab(icon: new Icon(Icons.home, size: 16,), text:"Home",),
+                                            new Tab(icon: new Icon(Icons.people,size: 16), text: "Meeting",),
+                                            new Tab(icon: new Icon(Icons.camera_alt, size: 16), text: "Upload",),
+                                            new Tab(icon: new Icon(Icons.person, size: 16,), text:"Profile",),
               
-                                      ],
+                                          ],
+                                        ),
+                                      ),
+                                    
                                     ),
-                                  ),
+    );
+                                  
+                                  
                             
                             
-                                );
+                                
                                 
                               }
               

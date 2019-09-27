@@ -41,9 +41,9 @@ catch(e){
 
 }
 }
-
   @override
   Widget build(BuildContext context) {
+    //
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: 
@@ -51,7 +51,6 @@ catch(e){
          child: FutureBuilder(
           future: _meeting(),
           builder:(BuildContext context, AsyncSnapshot snapshot){
-
             print(snapshot.data);
             if(snapshot.data==null){
               return Container(

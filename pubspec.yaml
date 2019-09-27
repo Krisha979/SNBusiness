@@ -28,25 +28,18 @@ dependencies:
   file_picker: 
   flutter_datetime_picker: 1.2.5
   dio: 
-  multi_image_picker: ^4.5.5
-  
+  multi_image_picker:  
+  carousel_pro: ^1.0.0
+ 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   rxdart: 
   intl: ^0.15.7
- 
-   
   
-  
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-
-
-
 
 #For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec 
@@ -69,6 +62,16 @@ flutter:
    - assets/facebook.png
    - assets/logo.jpg
    - assets/docicon.png
+   - assets/image1.jpg
+   - assets/image2.jpg
+   - assets/image3.jpg
+   - assets/image4.jpg
+   - assets/invoice.png
+   - assets/icon1.png
+   - assets/Document.png
+   - assets/icon3.png
+   - assets/icon5.png
+   - assets/icon6.png
    
 
   # An image asset can refer to one or more resolution-specific "variants", see

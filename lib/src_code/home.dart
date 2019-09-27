@@ -1,310 +1,215 @@
 import 'package:flutter/material.dart';
-import 'package:snbiz/src_code/meeting.dart';
-import 'package:snbiz/src_code/allnotification.dart';
-import 'package:snbiz/src_code/documents.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
-
- Function onTap;
-class Home extends StatelessWidget{
-  
+class Home extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: InkWell(
-          splashColor: Colors.greenAccent,
-          onTap: (){},
-          child: Wrap(
-                  children:<Widget>[
-                   Container(
-                     margin: EdgeInsets.all(2.0),
-                      child: Material(
-                      color: Colors.white70,
-                      elevation: 5.0,
-                      borderRadius: BorderRadius.circular(8.0),
-                      shadowColor: Color(0x802196f3),
-                
-                      child: Column(
-                        
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
+  State<StatefulWidget> createState() => HomeState();
+}
 
-                        ListTile(
-                          
-                            onTap: ( ){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Documents()));
-                              
-                            
-                            },
-                          
-                            title:Wrap(
-                                   children:<Widget>[
-                                    Container(
-                                      padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 20.0),
-                                      margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0), 
-                                                 
-                                  
-                                      decoration: new BoxDecoration(
-                                      color: Colors.white,
-                                    
-                                      borderRadius: new BorderRadius.circular(10.0),
-                                      boxShadow: [
-                                      BoxShadow(
-                                                blurRadius: 4.0,
-                                                color: Colors.black.withOpacity(0.5),
-                                                offset: Offset(0.5, 0.5),
-                                              ),
-                                            ],
-                                      ),
-                                      child:  Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
-                              
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: <Widget>[
-                                            Text("All Documennts"),
-                                            Text("148"),
-                                            Icon(Icons.access_time),
-                                            Text("17th august 2019"),
-
-                                          ],
-
-                                        ),
-                                        ClipOval(
-                                        child: Material(
-                                          color: Colors.blue, // button color
-                                          child: InkWell(
-                                            splashColor: Colors.red, // inkwell color
-                                            child: SizedBox(width: 56, height: 56,
-                                            child: Icon(
-                                              Icons.picture_as_pdf,
-                                              color: Colors.white,
-                                              )),
-                                            onTap: () {},
-                                          ),
-                                        ),
-                                    )
-                           
-                                  ],
-                                ),
-
-                              ),
-                              ],
-                            ),
-                            ),
-
-
-
-
-                   ListTile(
-                      onTap: ( ){
-                       // Navigator.of(context).pop();
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => new Meeting()));
-                      },
-                    
-                    title:Wrap(
-                             children:<Widget>[
-                             Container(
-                                 padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 20.0),
-                                 margin: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0), 
-        
-                                  decoration: new BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: new BorderRadius.circular(10.0),
-                                  boxShadow: [
-                                  BoxShadow(
-                                          blurRadius: 4.0,
-                                          color: Colors.black.withOpacity(0.5),
-                                          offset: Offset(0.5, 0.5),
-                                        ),
-                                      ],
-                                  ),
-                        
-                        
-
-
-                        child: new Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text("All Meetings"),
-                                Text("148"),
-                                Icon(Icons.arrow_downward),
-                                Text("17th august 2019"),
-
-                              ],
-
-                            ),
-                            
-                            ClipOval(
-                              child: Material(
-                                color: Colors.green, // button color
-                                child: InkWell(
-                                  splashColor: Colors.red, // inkwell color
-                                  child: SizedBox(width: 56, height: 56,
-                                   child: Icon(
-                                     Icons.picture_as_pdf,
-                                     color: Colors.white,
-                                     ),
-                                  
-                                  ),
-                                  onTap: () {},
-                                ),
-                              ),
-                            )
-                          ],
-
-                          
-                        ),
-                        
-                      ),
-                             ]
-                    ),
-                   ),
-                    
-                    
-                    Wrap(
-                       children:<Widget>[
-                       ListTile( 
-                        onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => AllNotification()));
-                        },
-                        title: Container(
-                             padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 25.0),
-                             margin: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0), 
-                        // width: 350.0,
-                          //height: 120.0,
-                           decoration: new BoxDecoration(
-                           color: Colors.white,
-                           borderRadius: new BorderRadius.circular(10.0),
-                           boxShadow: [
-                           BoxShadow(
-                                  blurRadius: 4.0,
-                                  color: Colors.black.withOpacity(0.5),
-                                  offset: Offset(0.5, 0.5),
-                                ),
-                              ],
-                           ),
-                           child: new Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text("All Notifications"),
-                                  Text("148"),
-                                  Icon(Icons.history),
-                                  Text("17th august 2019"),
-
-                                ],
-
-                              ),
-                          
-                               ClipOval(
-                                child: Material(
-                                  color: Colors.deepOrange, // button color
-                                  child: InkWell(
-                                    splashColor: Colors.red, // inkwell color
-                                    child: SizedBox(width: 56, height: 56,
-                                     child: Icon(
-                                       Icons.notifications,
-                                       color: Colors.white,
-                                       ))
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-
-                        ),
-                       
-                      ),
-                     ],
-                    ),
-                    
-                    
-                     Wrap(
-                        children:<Widget>[
-                         ListTile(
-                        onTap: ( ){ 
-                          Navigator.pop(context);
-
-                        },
-                     title:Container(
-                       // width: 350.0,
-                        //height: 120.0,
-                          padding: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 25.0),
-                           margin: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0), 
-                         decoration: new BoxDecoration(
-                         color: Colors.white,
-                         borderRadius: new BorderRadius.circular(10.0),
-                         boxShadow: [
-                         BoxShadow(
-                                blurRadius: 4.0,
-                                color: Colors.black.withOpacity(0.5),
-                                offset: Offset(0.5, 0.5),
-                              ),
-                            ],
-                         ),
-                         child: new Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text("All Invoices"),
-                                Text("148"),
-                                Icon(Icons.arrow_downward),
-                                Text("17th august 2019"),
-
-                              ],
-
-                            ),
-                    
-                             ClipOval(
-                              child: Material(
-                                color: Colors.redAccent, // button color
-                                child: InkWell(
-                                  splashColor: Colors.red, // inkwell color
-                                  child: SizedBox(width: 56, height: 56,
-                                   child: Icon(
-                                     Icons.filter_3,
-                                     color: Colors.white,
-                                     ),
-                                  
-                                ),
-                              ),
-                            )
-                             ),
-                          ],
-
-                    ),
-                       ),
-                       ),
-                                            ],
-                     ),
-                  ],
-              ),
-
-            ),
-            ),
-                      ],
-          )
-        ),
-        ),
-      ],
+class HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation<double> animation;
+  bool showIndicator = false;
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      duration: Duration(milliseconds: 2000),
+      vsync: this,
     );
+    animation = Tween(begin: 5.0, end: 18.0).animate(controller)
+      ..addListener(() {
+        setState(() {});
+      });
+    controller.forward();
+  }
 
+   final carousel2 = Carousel(
+     
+      boxFit: BoxFit.cover,
+      animationCurve: Curves.fastOutSlowIn,
+    animationDuration: Duration(milliseconds: 2000),
+    dotSize: 2.0,
+    dotIncreasedColor: Color(0xFFFFFFFF),
+    dotBgColor: Colors.black.withOpacity(0.5),
+    autoplayDuration: Duration(seconds: 5),
+    images: [
+      AssetImage('assets/image1.jpg',
+
+      ),
+      AssetImage('assets/image2.jpg'),
+      AssetImage('assets/image3.jpg'),
+      AssetImage('assets/image4.jpg'),
+    ],
+    // dotBgColor: Colors.white.withOpacity(1),
+    
+  );
+   
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+  //  double screenHeight = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+        body: SingleChildScrollView(
+        child:Container(
+           color: Color(0xFFd6d6d6),
+    //  height: size.height-62,
+      //width: size.width,
+     // color: Colors.grey,
+      child: Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Colors.white),
+            //height: size.height/5 ,
+           // color: Colors.white,
+            child: Column(
+              children: <Widget>[
+                new Image(
+                  image: new AssetImage("assets/logo.jpg"),
+                  height: size.height /4.8,
+                  width: size.width
+                ),
+                
+               
+              ],
+            ),
+          ),
+          Container(
+            //color: Colors.black,
+           
+            child: Wrap(
+              children: <Widget>[
+              Container(
+              height: size.height/2.5,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Colors.white),
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+               // color: Colors.white,
+                padding: EdgeInsets.fromLTRB(40,40,40,40),
+                //color: Colors.black,
+               // width: size.width,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Column(
+                          children: <Widget>[
+                            Image(
+                              image: new AssetImage("assets/icon1.png"),
+                              height: size.height/13,
+                              
+                              
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0,5,0,5),
+                              child: Text("Tasks"),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            Image(
+                              image: new AssetImage("assets/invoice.png"),
+                              height: size.height/13,
+                              
+                              
+                              
+
+                            ),
+                            
+                            Padding(
+                           padding: const EdgeInsets.fromLTRB(0,5,0,5),
+                              child: Text("Invoice"),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: <Widget>[
+                            Image(
+                              image: new AssetImage("assets/Document.png"),
+                              height: size.height/13,
+                              
+                            ),
+                            Padding(
+                       padding: const EdgeInsets.fromLTRB(0,5,0,5),
+                              child: Text("Documents"),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                    
+                    //  padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                      Divider(
+                        color: Colors.grey,
+                        height: 50.0,
+                       
+
+                      ),
+                    
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+
+                        Column(
+                          children: <Widget>[
+                            Image(
+                              image: new AssetImage("assets/icon5.png"),
+                              height: size.height/13,
+                              
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0,5,0,5),
+                              child: Text("Set Meetings"),
+                            )
+                          ],
+                        ),
+
+                        Column(
+                          children: <Widget>[
+                            Image(
+                              image: new AssetImage("assets/icon3.png"),
+                              height: size.height/13,
+                              
+                            ),
+                            Padding(
+                             padding: const EdgeInsets.fromLTRB(0,5,0,5),
+                              child: Text("Upload documents"),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              
+              ),
+              ]
+            ),
+          ),
+          GestureDetector(
+                  onTap: (){},  // code hack do nothing
+                  child: Wrap(
+                    children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                     height: size.height/4.8,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0), 
+                          child: carousel2
+                    ),
+                ),
+        ],
+
+      ),
+    ),
+        ]
+      )
+        ) 
+    ),
+    );
+        
   }
 }
-  
-
-
-  
