@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:snbiz/Model_code/meetingsdetails.dart';
-import 'package:snbiz/src_code/meeting.dart';
+//import 'package:snbiz/src_code/meeting.dart';
 
 class MeetingDetail extends StatefulWidget{
   final MeetingInfo details;

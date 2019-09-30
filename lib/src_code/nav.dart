@@ -60,9 +60,21 @@ class NavBar extends State<Nav> {
            // decoration: BoxDecoration(
              // borderRadius: BorderRadius.circular(10.0),
             //),
-            child: Text(
-              "CustomerId:",
-             // style: TextStyle(color: Colors.white),
+            child: Container(
+              decoration: BoxDecoration(
+
+                color: Colors.blue,
+               // borderRadius: BorderRadius.circular(4),
+                shape: BoxShape.circle
+                
+              
+
+              ),
+              padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
+              child: Text(
+                "CustomerId:",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         ),
@@ -84,7 +96,7 @@ class NavBar extends State<Nav> {
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MainPage()));
+                MaterialPageRoute(builder: (context) => MainPage()));
               }),
         ),
         Container(
@@ -173,42 +185,56 @@ class NavBar extends State<Nav> {
           margin: EdgeInsets.only(right: 40),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          
           children: <Widget>[
-            Padding(padding: const EdgeInsets.fromLTRB(0.0, 260.0, 30.0, 20.0)),
-            InkWell(
-              splashColor: Colors.red,
-              onTap: () {},
-              child: Image(
-                image: new AssetImage("assets/facebook.png"),
-                height: 30.0,
-                width: 30.0,
+            
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+              child: InkWell(
+                splashColor: Colors.red,
+                onTap: () {},
+                child: Image(
+                  image: new AssetImage("assets/facebook.png"),
+                  height: 30.0,
+                  width: 30.0,
+                ),
               ),
             ),
-            InkWell(
-              splashColor: Colors.blue,
-              onTap: () {},
-              child: Image(
-                image: new AssetImage("assets/instagram.png"),
-                height: 30.0,
-                width: 30.0,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+              
+              child: InkWell(
+                splashColor: Colors.blue,
+                onTap: () {},
+                child: Image(
+                  image: new AssetImage("assets/instagram.png"),
+                  height: 30.0,
+                  width: 30.0,
+                ),
               ),
             ),
-            InkWell(
-              splashColor: Colors.blue,
-              onTap: () {},
-              child: Image(
-                image: new AssetImage("assets/whatsapp.png"),
-                height: 35.0,
-                width: 35.0,
+            Padding(
+             padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+                child: InkWell(
+                splashColor: Colors.blue,
+                onTap: () {},
+                child: Image(
+                  image: new AssetImage("assets/whatsapp.png"),
+                  height: 35.0,
+                  width: 35.0,
+                ),
               ),
             ),
-            InkWell(
-              splashColor: Colors.red,
-              child: Image(
-                image: new AssetImage("assets/gmail.png"),
-                height: 35.0,
-                width: 35.0,
+            Padding(
+             padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
+              child: InkWell(
+                splashColor: Colors.red,
+                child: Image(
+                  image: new AssetImage("assets/gmail.png"),
+                  height: 35.0,
+                  width: 35.0,
+                ),
               ),
             ),
           ],

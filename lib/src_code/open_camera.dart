@@ -21,7 +21,12 @@ class CameraApp extends StatefulWidget {
 class CameraAppState extends State<CameraApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Upload"),
+      ),
+
+    );
   }
   //selecting an image from gallery is a async task as user can take as much time as they want
   //List<Asset> images = List<Asset>();

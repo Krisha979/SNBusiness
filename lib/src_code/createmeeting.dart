@@ -4,19 +4,23 @@ class Create extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create Meetings"),
-      ),
+        title: Text("Create Meetings",
+         style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal)),
+            backgroundColor: const Color(0xFF9C38FF),),
+      
       body: ListView( 
        scrollDirection: Axis.vertical,
        children: <Widget>[
          
 
               Container(
-                margin: EdgeInsets.all(15.0),
-                height: 630.0,
-                width:  320.0,
+                height: size.height,
+                width: size.width,
+                margin: EdgeInsets.all(10.0),
+               
                   child: Material(
                     color: Colors.white,
                     elevation: 2.0,

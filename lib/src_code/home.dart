@@ -49,6 +49,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
     ],
     // dotBgColor: Colors.white.withOpacity(1),
   );
+  @override
 
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -104,7 +105,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 InkWell(
                                   splashColor: Colors.red,
                                   onTap: () {
-                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TaskPage()));
+                                     Navigator.push(context, MaterialPageRoute(builder: (context) => TaskPage()));
                                   },
                                   child: Image(
                                     image: new AssetImage("assets/icon1.png"),
@@ -123,7 +124,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 InkWell(
                                   splashColor: Colors.red,
                                   onTap: () {
-                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Invoice()));
+                                     Navigator.push(context, MaterialPageRoute(builder: (context) => Invoice()));
                                   },
                                   child: Image(
                                     image: new AssetImage("assets/invoice.png"),
@@ -142,7 +143,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 InkWell(
                                   splashColor: Colors.red,
                                   onTap: () {
-                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Documents()));
+                                     Navigator.push(context, MaterialPageRoute(builder: (context) => Documents()));
                                   },
                                   child: Image(
                                     image:
@@ -174,7 +175,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 InkWell(
                                   splashColor: Colors.red,
                                   onTap: () {
-                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Create()));
+                                     Navigator.push(context, MaterialPageRoute(builder: (context) => Create()));
                                   },
                                   child: Image(
                                     image: new AssetImage("assets/icon5.png"),
@@ -193,7 +194,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 InkWell(
                                   splashColor: Colors.red,
                                   onTap: () {
-                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CameraApp()));
+                                     Navigator.push(context, MaterialPageRoute(builder: (context) => CameraApp()));
                                   },
                                   child: Image(
                                     image: new AssetImage("assets/icon3.png"),

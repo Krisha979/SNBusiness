@@ -1,6 +1,6 @@
 class MeetingInfo {
   int meetingId;
-  DateTime meetingTime;
+  String meetingTime;
   String agenda;
   String location;
   int statusId;

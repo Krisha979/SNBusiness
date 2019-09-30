@@ -10,11 +10,16 @@ class Setting extends StatefulWidget{
 class SettingState extends State<Setting>{
   @override
   Widget build(BuildContext context) {
+       Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Settings"),
-      ),
-    body: Text("Hello Notification"),
+      
+   body: SingleChildScrollView(
+     child: Container(
+        height: size.height,
+        width: size.width,
+        color: Color(0xFFE0CECE),
+     ),
+   ),
       
     );
   }
