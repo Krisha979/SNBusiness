@@ -122,7 +122,8 @@ callender(int a){
                           Image(
                           image: new AssetImage("assets/docicon.png",),
                           height: 60),
-                         Text( filePath, 
+                         Flexible(
+                         child: Text( filePath, 
                           textAlign: TextAlign.center, 
                           style:TextStyle(
                           color: Colors.black,
@@ -130,6 +131,7 @@ callender(int a){
                           fontSize: 14,
                         ),
                         ),
+                         ),
                         ]
                        ),
                         ]
@@ -162,12 +164,13 @@ callender(int a){
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children:[
-                      
-                      Text(
+                      Flexible(
+                     child: Text(
                     'File Name',
                      style: TextStyle(color: Colors.black),
                      
                      ),
+                      ),
                      Container(
                        width: 180,
                        child: Material (
