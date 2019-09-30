@@ -6,8 +6,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:snbiz/src_code/filePreview.dart';
 import 'package:snbiz/src_code/imagePreview.dart';
-//import 'package:multi_image_picker/multi_image_picker.dart';
-//import 'package:flutter/services.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:flutter/services.dart';
 //import 'package:multi_image_picker/asset.dart';
 //import 'asset_view.dart';
 
@@ -29,11 +29,11 @@ class CameraAppState extends State<CameraApp> {
     );
   }
   //selecting an image from gallery is a async task as user can take as much time as they want
-  //List<Asset> images = List<Asset>();
-  //String _error;
+  List<Asset> images = List<Asset>();
+  String _error;
 
   openGallery(BuildContext context) async {
-    /*
+    
     setState(() {
       images = List<Asset>();
     });
@@ -56,12 +56,13 @@ class CameraAppState extends State<CameraApp> {
       if (error == null) _error = 'No Error Dectected';
     });
   }
-    */
+    /*
     String image = await FilePicker.getFilePath(type: FileType.IMAGE);
     //imageFile = image;
     img = image;
     call();
   }
+  */
 
   File imageFile;
   String img;

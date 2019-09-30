@@ -6,6 +6,7 @@ import 'package:snbiz/src_code/page.dart';
 import'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:snbiz/src_code/static.dart';
+import 'package:firebase_cloud_messaging/firebase_cloud_messaging.dart';
 
 class LoginPage extends StatefulWidget{
         @override
@@ -22,7 +23,7 @@ class LoginPage extends StatefulWidget{
       final passwordcontroller = TextEditingController();
       final storage = new FlutterSecureStorage();
       final _scaffoldKey = GlobalKey<ScaffoldState>();
-
+      final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
       @override
       void initState() {
       super.initState();
@@ -30,6 +31,8 @@ class LoginPage extends StatefulWidget{
       }
 
       Future<Null> getfromstorage() async {
+      var token = await _firebaseMessaging.getToken();
+      print(token);
       var email = await storage.read(key:"Email");
       var password = await storage.read(key: "Password");
           if(email != null){
@@ -100,14 +103,10 @@ class LoginPage extends StatefulWidget{
         setState(() {
                       isLoading = false; 
                   });
+
         await _alert(context, "Error","Server Error. Connection timed Out.");
-      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainPage()));
-        
-
       }
-    }
-
-      
+    }  
       bool _obscureText = true;
       void _toggle() {
           setState(() {
