@@ -90,7 +90,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         color: Colors.white),
                     margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
                     // color: Colors.white,
-                    padding: EdgeInsets.fromLTRB(40, 40, 40, 40),
+                    padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
                     //color: Colors.black,
                     // width: size.width,
                     child: Column(
