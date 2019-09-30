@@ -14,10 +14,15 @@ class MyApp extends StatelessWidget{
 
 
     return MaterialApp(
+      title: 'Flutter',
+      
       theme: ThemeData(
+        
         primarySwatch: Colors.deepPurple
       ),
-    debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
+   
+     
    
     home: LoginPage(),
     );
