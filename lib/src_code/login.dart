@@ -99,13 +99,10 @@ class LoginPage extends StatefulWidget{
         setState(() {
                       isLoading = false; 
                   });
+
         await _alert(context, "Error","Server Error. Connection timed Out.");
-        
-
       }
-    }
-
-      
+    }  
       bool _obscureText = true;
       void _toggle() {
           setState(() {

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 //import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/meetingsdetails.dart';
 import 'package:snbiz/src_code/meetingdetail.dart';
 import 'package:snbiz/src_code/static.dart';
@@ -83,10 +84,11 @@ catch(e){
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text(snapshot.data[meetingId].fullName),
-                            Text(snapshot.data[meetingId].meetingTime),
-                            Text(snapshot.data[meetingId].agenda)
-
+                            Flexible(
+                           child: Text(snapshot.data[meetingId].fullName)),
+                            Text( DateFormat("dd-MM-yyyy").format(snapshot.data[meetingId].meetingTime)),
+                            Text(DateFormat("H:m").format(snapshot.data[meetingId].meetingTime)),
+                            Flexible(child: Text(snapshot.data[meetingId].agenda)),
                           ],
 
                         ),
