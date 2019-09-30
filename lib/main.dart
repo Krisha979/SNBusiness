@@ -13,35 +13,26 @@ import 'package:snbiz/src_code/login.dart';
 // stateless widget is used when data cannot be changed
 class MyApp extends StatelessWidget{
       final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-  void initstate(BuildContext context){
-  _firebaseMessaging.configure(
-          onMessage: (Map<String, dynamic> message) async {
-            print("onMessage: $message");
-            showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                        content: ListTile(
-                        title: Text(message['notification']['title']),
-                        subtitle: Text(message['notification']['body']),
-                        ),
-                        actions: <Widget>[
-                        FlatButton(
-                            child: Text('Ok'),
-                            onPressed: () => Navigator.of(context).pop(),
-                        ),
-                    ],
-                ),
-            );
-        },
-        onLaunch: (Map<String, dynamic> message) async {
-            print("onLaunch: $message");
-            // TODO optional
-        },
-        onResume: (Map<String, dynamic> message) async {
-            print("onResume: $message");
-            // TODO optional
-        },
-      );
+  void initstate(){
+   _firebaseMessaging.configure(
+       
+       onMessage: (Map<String, dynamic> message) async {
+         print("onMessage: $message");
+         myBackgroundMessageHandler(message);
+
+       },
+      
+       onLaunch: (Map<String, dynamic> message) async {
+         print("onLaunch: $message");
+         myBackgroundMessageHandler(message);
+       
+       },
+       onResume: (Map<String, dynamic> message) async {
+         print("onResume: $message");
+        myBackgroundMessageHandler(message);
+
+       },
+     );
 }
   @override
   Widget build(BuildContext context) {
@@ -57,26 +48,17 @@ class MyApp extends StatelessWidget{
     );
   }
 }
-Future<void> _alert(BuildContext context, String header, String body) {
-                          
-                        return showDialog<void>(
-                        context: context,
-                        builder: (BuildContext context) {
-                        return AlertDialog(
-                            title: Text(header),
-                            content: Text(body),
-                        
-                                actions: <Widget>[
-                          
-                                  FlatButton(
-                                          child: Text('Ok', style: TextStyle(color: Colors.blue, fontSize: 12.0)),
-                                          
-                                          onPressed: () {
-                                                     Navigator.of(context).pop();
-                                    },
-                                  ),
-                               ],
-                             );
-                            },
-                          );
-                        }
+
+Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
+   if (message.containsKey('data')) {
+     // Handle data message
+     final dynamic data = message['data'];
+   }
+
+   if (message.containsKey('notification')) {
+     // Handle notification message
+     final dynamic notification = message['notification'];
+   }
+
+   // Or do other work.
+ }
