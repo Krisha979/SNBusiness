@@ -1,92 +1,276 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/meetingsdetails.dart';
-import 'package:snbiz/src_code/static.dart';
-import 'package:http/http.dart' as http;
+import 'package:snbiz/src_code/meeting.dart';
 
-class MeetingDetail extends StatefulWidget{
+class MeetingDetail extends StatefulWidget {
+  final MeetingInfo details;
+  const MeetingDetail({Key key, this.details}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return MeetingDetailState();
+    return MeetingDetailState(this.details);
+  }
+}
+
+class MeetingDetailState extends State<MeetingDetail> {
+  final MeetingInfo details;
+  MeetingDetailState(this.details);
+
+  TextEditingController meetingTime;
+  TextEditingController  meetingLocation;
+  TextEditingController meetingAgenda;
+  TextEditingController meetingDate;
+  void editData(){
+
+
+  }
+  @override void initState() {
+    meetingTime = new TextEditingController(text:details.meetingTime.toString());
+    meetingLocation = new TextEditingController(text: details.location);
+    meetingAgenda = new TextEditingController(text: details.agenda);
+
+  }
+ 
+ //time Picker
+  TimeOfDay _time = new TimeOfDay.now();
+  Future<Null> selectTime(BuildContext context) async {
+    final TimeOfDay picked =
+        await showTimePicker(context: context, initialTime: _time);
+    if (picked != null && picked != _time) {
+      print('Time Selected: ${_time.toString()}');
+    }
+  }
+String _date ="";
+  datePicker(){
+  DatePicker.showDatePicker(context,
+                      theme: DatePickerTheme(
+                        containerHeight: 210.0,
+                      ),
+                      showTitleActions: true,
+                      minTime: DateTime(2000, 1, 1),
+                      maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
+                    print('confirm $date');
+                    _date = '${date.year} - ${date.month} - ${date.day}';
+                    setState(() {});
+                  }, currentTime: DateTime.now(), locale: LocaleType.en);
+} 
+/*
+
+  String _radioValue;
+  String choice;
+  @override
+  void initState() {
+    setState(() {
+      _radioValue = "one";
+    });
+    super.initState();
   }
 
-}
-class MeetingDetailState extends State<MeetingDetail>{
-
-
-Future<List<MeetingInfo>>_meeting()async{
-  try{
-  http.Response data = await http.get(
-          Uri.encodeFull("https://s-nbiz.conveyor.cloud/api/OrgMeetings?Orgid=" + StaticValue.orgId.toString()), 
-          headers: {
-        'Content-type': 'application/json',
-        'Accept': 'application/json' 
+  void radioButtonChanges(String value) {
+    setState(() {
+      _radioValue = value;
+      switch (value) {
+        case 'Accept':
+          choice = value;
+          break;
+        case 'Decline':
+          choice = value;
+          break;
+        case 'Cancel':
+          choice = value;
+          break;
+        default:
+          choice = null;
       }
-      );
-
-  var jsonData = json.decode(data.body);
-  List <MeetingInfo> meeting = [];
-  for (var u in jsonData){
-      var meetinginfo = MeetingInfo.fromJson(u);
-    meeting.add(meetinginfo);
+      debugPrint(choice); //Debug the choice in console
+    });
   }
-print(meeting.length);
-return meeting;
-}
-catch(e){
-  print(e);
-  return null;
-}
-}
+  */
 
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Meeting Details"),
-      ),
-       body:Container(            
-         child: FutureBuilder(
-          future: _meeting(),
-          builder:(BuildContext context, AsyncSnapshot snapshot){
-          //  print(snapshot.data);
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int meetingId){
-                  return ListTile(
-                    title: Container(
-                       width: 315.0,
-                    height: 125.0,
-                     decoration: new BoxDecoration(
-                     color: Colors.white,
-                     borderRadius: new BorderRadius.circular(15.0),
-                     boxShadow: [
-                     BoxShadow(
-                            blurRadius: 4.0,
-                            color: Colors.black.withOpacity(0.5),
-                            offset: Offset(0.5, 0.5),
+  Future editpopup() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return Dialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Text(" Meeting Time"),
+                          InkWell(
+                              child: Icon(Icons.timer),
+                              onTap: (){selectTime(context);},
+                              ),
+                          SizedBox(),
+                          TextFormField(
+                            controller: meetingTime,
+                            decoration: InputDecoration(
+                                fillColor: Colors.white, filled: true),
                           ),
                         ],
-                     ),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Text(snapshot.data[meetingId].meetingTime),
-                            Text(snapshot.data[meetingId].location),
-                            Text(snapshot.data[meetingId].statusName)
-                          ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text(" Meeting Location"),
+                          SizedBox(),
+                          TextFormField(
+                            controller: meetingLocation,
+                            decoration: InputDecoration(
+                                fillColor: Colors.white, filled: true),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text(" Agenda"),
+                          SizedBox(),
+                          TextFormField(
+                            controller: meetingAgenda,
+                            decoration: InputDecoration(
+                                fillColor: Colors.white, filled: true),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text("Date"),
 
-                        ),
-                    )
-                  );
-                }
-              );
-            }
-         )
-       )
-       );
-
+                          SizedBox(),
+                          InkWell(child: Icon(Icons.date_range),
+                          onTap: (){datePicker();},),
+                          Text(_date),
+                        ],
+                      ),
+                      /*
+                      Row(
+                        children: <Widget>[
+                          Text("Status"),
+                          Row(
+                            children: <Widget>[
+                              Radio(
+                                value: 'Accept',
+                                groupValue: _radioValue,
+                                onChanged: radioButtonChanges,
+                              ),
+                              Text(
+                                "One selected",
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      */
+                      FlatButton(
+                        color: Colors.blue,
+                        child: Text("Update", 
+                        style: TextStyle(
+                          color: Colors.white
+                        ),), 
+                      onPressed: (){})
+                    ],
+                  ),
+                ));
+          });
+    });
   }
 
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Details"),
+          actions: <Widget>[
+            InkWell(
+              onTap: () {
+                editpopup();
+              },
+              child: Icon(
+                Icons.edit,
+                color: Colors.white,
+                size: 30.0,
+              ),
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+            child: Center(
+                child: Container(
+                    width: size.width,
+                    height: size.height,
+                    color: Colors.blue,
+                    margin: EdgeInsets.all(10.0),
+                    child: Column(children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Text("Meeting Time"),
+                          Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    new BoxShadow(
+                                        color: Colors.black, blurRadius: 20.0)
+                                  ]),
+                              child: Text(details.meetingTime.toString())),
+                        ],
+                      ),
+                       Row(
+                        children: <Widget>[
+                          Text("Meeting Date"),
+                          Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    new BoxShadow(
+                                        color: Colors.black, blurRadius: 20.0)
+                                  ]),
+                              //child: Text(details.meetingTime.toString())),
+                           child: Text( DateFormat("dd-MM-yyyy").format(details.meetingTime)),
+                           ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text("Meeting Location"),
+                          Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    new BoxShadow(
+                                        color: Colors.black, blurRadius: 20.0)
+                                  ]),
+                              child: Text(details.location.toString())),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text("Set Reminder"),
+                          Container(
+                            child: Row(children: <Widget>[
+                              InkWell(
+                                  child: const Icon(Icons.timer,
+                                      color: Colors.green),
+                                  onTap: () {
+                                    selectTime(context);
+                                  }),
+                              Padding(
+                                padding: EdgeInsets.all(10.0),
+                              ),
+                              Text('Reminder Time: $_time')
+                            ]),
+                          ),
+                        ],
+                      ),
+                    ])))));
+  }
 }

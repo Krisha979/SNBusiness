@@ -70,48 +70,7 @@ callender(int a){
                             }
                     setState(() {});
                   }, currentTime: DateTime.now(), locale: LocaleType.en);
-                Container(
-                  alignment: Alignment.center,
-                  height: 50.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Container(
-                            child: Row(
-                              children: <Widget>[
-                                Icon(
-                                  Icons.date_range,
-                                  size: 18.0,
-                                  color: Colors.teal,
-                                ),
-                                Text(
-                                  " $_date",
-                                  style: TextStyle(
-                                      color: Colors.teal,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18.0),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      Text(
-                        "  Change",
-                        style: TextStyle(
-                            color: Colors.teal,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0),
-                      ),
-                    ],
-                  ),
-                color: Colors.white,
-                );
-}
-
-  
+} 
     @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -163,7 +122,8 @@ callender(int a){
                           Image(
                           image: new AssetImage("assets/docicon.png",),
                           height: 60),
-                         Text( filePath, 
+                         Flexible(
+                         child: Text( filePath, 
                           textAlign: TextAlign.center, 
                           style:TextStyle(
                           color: Colors.black,
@@ -171,6 +131,7 @@ callender(int a){
                           fontSize: 14,
                         ),
                         ),
+                         ),
                         ]
                        ),
                         ]
@@ -203,12 +164,13 @@ callender(int a){
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children:[
-                      
-                      Text(
+                      Flexible(
+                     child: Text(
                     'File Name',
                      style: TextStyle(color: Colors.black),
                      
                      ),
+                      ),
                      Container(
                        width: 180,
                        child: Material (

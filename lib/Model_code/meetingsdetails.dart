@@ -1,13 +1,13 @@
 class MeetingInfo {
   int meetingId;
-  String meetingTime;
+  DateTime meetingTime;
   String agenda;
   String location;
   int statusId;
   int organizationId;
   String reminderTime;
   int createdBy;
-  String dateCreated;
+  DateTime dateCreated;
   String rowstamp;
   bool deleted;
   String fullName;

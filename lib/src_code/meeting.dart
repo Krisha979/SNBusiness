@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+//import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:snbiz/Model_code/meetingsdetails.dart';
+import 'package:snbiz/src_code/meetingdetail.dart';
 import 'package:snbiz/src_code/static.dart';
-
-import 'meetingdetail.dart';
 
 class Meeting extends StatefulWidget{
   @override
@@ -41,21 +42,21 @@ catch(e){
 
 }
 }
-
   @override
   Widget build(BuildContext context) {
-   //Size size = MediaQuery.of(context).size;
+    //
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(            
+      body: 
+      Container(            
          child: FutureBuilder(
           future: _meeting(),
           builder:(BuildContext context, AsyncSnapshot snapshot){
-
             print(snapshot.data);
             if(snapshot.data==null){
               return Container(
                 child: Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator()
                 )
               );
             }else{
@@ -83,10 +84,13 @@ catch(e){
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            Text(snapshot.data[meetingId].meetingTime),
-                            Text(snapshot.data[meetingId].location),
-                            Text(snapshot.data[meetingId].statusName)
+                            Flexible(
+                           child: Text(snapshot.data[meetingId].fullName)),
+                            Text( DateFormat("dd-MM-yyyy").format(snapshot.data[meetingId].meetingTime)),
+                            Text(DateFormat("H:m").format(snapshot.data[meetingId].meetingTime)),
+                            Flexible(child: Text(snapshot.data[meetingId].agenda)),
                           ],
+
                         ),
                   
                        ClipOval(
@@ -100,7 +104,8 @@ catch(e){
                                  color: Colors.white,
                                  )),
                               onTap: () {
-                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MeetingDetail()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> MeetingDetail(details:                        
+                                snapshot.data[meetingId])));
                               },
                             ),
                           ),
@@ -108,10 +113,8 @@ catch(e){
                       ],
                     ),
                     ),
-                    
          );
                 }
-      
                   );
             }
           } 
