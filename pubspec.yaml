@@ -22,12 +22,12 @@ dependencies:
   image_picker:
   splashscreen:
   flutter_screenutil: ^0.5.2
-  http: ^0.12.0+1
+  http: ">=0.12.0+1 <0.14.0"
   connectivity: ^0.4.4
   flutter_secure_storage: ^3.3.1
   file_picker: 
   flutter_datetime_picker: ^1.2.5
-  dio: 
+  dio: any 
   multi_image_picker:  
   carousel_pro: ^1.0.0
   firebase_cloud_messaging: ^4.0.4+1
